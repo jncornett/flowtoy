@@ -11,11 +11,11 @@ import {
   reconnectEdge,
 } from "@xyflow/react"
 import { useCallback, useState } from "react"
-import { INITIAL_EDGES, INITIAL_NODES } from "./project/initial-state"
 import Project from "./project/Project"
 import { nextNodeUid } from "./project/node-uid"
 import * as Tone from "tone"
 import { findFxNode, findSynthNode } from "./project/node-types"
+import DEFAULTS from "../defaults"
 
 const disconnectEdge = (edge: Edge, nodes: Node[]) => {
   const sourceType = edge.source.split("-")[0]
@@ -97,8 +97,8 @@ const connectEdge = (params: Connection, nodes: Node[]) => {
 }
 
 export function New() {
-  const [nodes, setNodes] = useState<Node[]>(INITIAL_NODES)
-  const [edges, setEdges] = useState(INITIAL_EDGES)
+  const [nodes, setNodes] = useState<Node[]>(DEFAULTS.initialState.nodes)
+  const [edges, setEdges] = useState(DEFAULTS.initialState.edges)
 
   const onNodesChange = useCallback((changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)), [])
 

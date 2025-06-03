@@ -14,15 +14,15 @@ import {
   ControlButton,
 } from "@xyflow/react"
 import "@xyflow/react/dist/style.css"
-import { NODE_TYPES, type AudioComponentNode, type SynthNode } from "./node-types"
+import { NODE_TYPES, type SynthNode } from "./node-types"
 import { MdPlayArrow } from "react-icons/md"
 import { useEffect } from "react"
-import { KEYMAP } from "./keymap"
+import DEFAULTS, { type Note } from "../../defaults"
 
 export type ProjectProps = {
   nodes?: Node[]
   edges?: Edge[]
-  onNodesChange?: (changes: NodeChange<AudioComponentNode>[]) => void
+  onNodesChange?: (changes: NodeChange[]) => void
   onEdgesChange?: (changes: EdgeChange[]) => void
   onConnect?: (params: Connection) => void
   onReconnect?: (oldEdge: Edge, newConnection: Connection) => void
@@ -44,7 +44,7 @@ export function Project({
 }: ProjectProps) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const note = KEYMAP[event.key]
+      const note = (DEFAULTS.keymap as Partial<Record<string, Note>>)[event.key]
       if (!note) return
       const nodeIds = edges?.filter((e) => e.source === "input-0")?.map((e) => e.target) ?? []
 
