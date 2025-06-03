@@ -1,0 +1,9 @@
+.synth-node .synth-node-widgets {
+	visibility: hidden;
+}
+
+.synth-node:hover .synth-node-widgets,
+.synth-node .synth-node-widgets:hover,
+.synth-node .synth-node-widget:hover {
+	visibility: visible;
+}
