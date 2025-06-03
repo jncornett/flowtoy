@@ -1,3 +1,3 @@
-import { uidGenerator } from "../../util/uid-generator";
+import { uidGenerator } from "../../util/uid-generator"
 
-export const nextNodeUid = uidGenerator();
+export const nextNodeUid = uidGenerator()

@@ -1,14 +1,18 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom";
-import App from "./App";
-import "normalize.css";
-import "./index.css";
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { HashRouter } from "react-router-dom"
+import App from "./App"
+import "normalize.css"
+import "./index.css"
+import invariant from "ts-invariant"
 
-createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<HashRouter>
-			<App />
-		</HashRouter>
-	</StrictMode>,
-);
+const $rootElement = document.getElementById("root")
+invariant($rootElement, "Root element not found")
+
+createRoot($rootElement).render(
+  <StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </StrictMode>,
+)

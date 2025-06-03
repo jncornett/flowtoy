@@ -1,52 +1,30 @@
-import type { Node, Edge } from "@xyflow/react";
-import * as Tone from "tone";
-import { nextNodeUid } from "./node-uid";
+import type { Node, Edge } from "@xyflow/react"
+import * as Tone from "tone"
+import {
+  createFxNode,
+  createInputNode,
+  createOutputNode,
+  createSignalNode,
+  createSynthNode,
+} from "./node-types"
 
-export const initialNodes = [
-	{
-		id: nextNodeUid("input"),
-		type: "inputNode",
-		data: { label: "Input 0" },
-		position: { x: 10, y: 10 },
-	},
-	{
-		id: nextNodeUid("synth"),
-		type: "synthNode",
-		data: { label: "Synth 0", synth: new Tone.Synth().toDestination() },
-		position: { x: 200, y: 10 },
-	},
-	{
-		id: nextNodeUid("fx"),
-		type: "fxNode",
-		data: {
-			label: "FX 0",
-			effect: new Tone.Delay(0.5) as Tone.ToneAudioNode<any>,
-		},
-		position: { x: 300, y: 200 },
-	},
-	{
-		id: nextNodeUid("output"),
-		type: "outputNode",
-		data: { label: "Output 0" },
-		position: { x: 400, y: 10 },
-	},
-	{
-		id: nextNodeUid("signal"),
-		type: "signalNode",
-		data: { frequency: 440, enabled: true },
-		position: { x: 500, y: 10 },
-	},
-] satisfies Node[];
+export const INITIAL_NODES = [
+  createInputNode(),
+  createSynthNode(new Tone.Synth().toDestination(), { x: 200 }),
+  createFxNode(new Tone.Delay(0.1), { x: 300 }),
+  createOutputNode({ x: 400 }),
+  createSignalNode({ frequency: 440, enabled: true }, { x: 500 }),
+] satisfies Node[]
 
-export const initialEdges = [
-	{
-		id: "input-0/synth-0",
-		source: "input-0",
-		target: "synth-0",
-	},
-	{
-		id: "synth-0/output-0",
-		source: "synth-0",
-		target: "output-0",
-	},
-] satisfies Edge[];
+export const INITIAL_EDGES = [
+  {
+    id: "input-0/synth-0",
+    source: "input-0",
+    target: "synth-0",
+  },
+  {
+    id: "synth-0/output-0",
+    source: "synth-0",
+    target: "output-0",
+  },
+] satisfies Edge[]
