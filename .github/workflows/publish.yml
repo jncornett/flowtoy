@@ -13,7 +13,7 @@ jobs:
         with:
           bun-version-file: package.json
       - run: bun install
-      - run: bun run build
+      - run: bun run build -- --base=/flowtoy
       - uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ./dist
