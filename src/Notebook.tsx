@@ -8,9 +8,7 @@ const uids = makeUidGenerator()
 
 export function Notebook() {
   const [pen, setPen] = useState<Pen>({ type: "addSynth" })
-  const [synths, setSynths] = useState<
-    { id: string; pos: { x: number; y: number } }[]
-  >([])
+  const [synths, setSynths] = useState<{ id: string; pos: { x: number; y: number } }[]>([])
   const [pos, setPos] = useState({ x: 0, y: 0 })
   console.log("synths", synths)
   return (
@@ -40,20 +38,8 @@ export function Notebook() {
         <title>Patch</title>
         {synths.map((synth) => (
           <>
-            <circle
-              key={synth.id}
-              cx={synth.pos.x}
-              cy={synth.pos.y}
-              r={10}
-              fill="red"
-            />
-            <PiFunctionBold
-              key={synth.id}
-              cx={synth.pos.x}
-              cy={synth.pos.y}
-              x={synth.pos.x}
-              y={synth.pos.y}
-            />
+            <circle key={synth.id} cx={synth.pos.x} cy={synth.pos.y} r={10} fill="red" />
+            <PiFunctionBold key={synth.id} cx={synth.pos.x} cy={synth.pos.y} x={synth.pos.x} y={synth.pos.y} />
           </>
         ))}
       </svg>

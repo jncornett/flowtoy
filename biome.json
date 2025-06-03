@@ -24,7 +24,8 @@
       "quoteStyle": "double",
       "trailingCommas": "all",
       "semicolons": "asNeeded",
-      "arrowParentheses": "always"
+      "arrowParentheses": "always",
+      "lineWidth": 120
     }
   }
 }

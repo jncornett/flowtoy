@@ -14,11 +14,7 @@ import {
   ControlButton,
 } from "@xyflow/react"
 import "@xyflow/react/dist/style.css"
-import {
-  NODE_TYPES,
-  type AudioComponentNode,
-  type SynthNode,
-} from "./node-types"
+import { NODE_TYPES, type AudioComponentNode, type SynthNode } from "./node-types"
 import { MdPlayArrow } from "react-icons/md"
 import { useEffect } from "react"
 import { KEYMAP } from "./keymap"
@@ -50,8 +46,7 @@ export function Project({
     const handleKeyDown = (event: KeyboardEvent) => {
       const note = KEYMAP[event.key]
       if (!note) return
-      const nodeIds =
-        edges?.filter((e) => e.source === "input-0")?.map((e) => e.target) ?? []
+      const nodeIds = edges?.filter((e) => e.source === "input-0")?.map((e) => e.target) ?? []
 
       for (const node of nodes ?? [])
         if (nodeIds.includes(node.id) && node.type === "synthNode") {
@@ -82,27 +77,19 @@ export function Project({
         reconnectable: true,
       }}
       onBeforeDelete={({ nodes }) =>
-        Promise.resolve(
-          nodes.every((n) => n.type !== "inputNode" && n.type !== "outputNode"),
-        )
+        Promise.resolve(nodes.every((n) => n.type !== "inputNode" && n.type !== "outputNode"))
       }
       connectionLineType={ConnectionLineType.Step}
       isValidConnection={(edge) => {
-        const sourceNodeType =
-          nodes?.find((n) => n.id === edge.source)?.type ?? ""
-        const targetNodeType =
-          nodes?.find((n) => n.id === edge.target)?.type ?? ""
+        const sourceNodeType = nodes?.find((n) => n.id === edge.source)?.type ?? ""
+        const targetNodeType = nodes?.find((n) => n.id === edge.target)?.type ?? ""
         switch (sourceNodeType) {
           case "inputNode":
             return targetNodeType === "synthNode"
           case "synthNode":
-            return (
-              targetNodeType === "fxNode" || targetNodeType === "outputNode"
-            )
+            return targetNodeType === "fxNode" || targetNodeType === "outputNode"
           case "fxNode":
-            return (
-              targetNodeType === "outputNode" || targetNodeType === "fxNode"
-            )
+            return targetNodeType === "outputNode" || targetNodeType === "fxNode"
           default:
             return false
         }

@@ -1,12 +1,6 @@
 import type { Node, Edge } from "@xyflow/react"
 import * as Tone from "tone"
-import {
-  createFxNode,
-  createInputNode,
-  createOutputNode,
-  createSignalNode,
-  createSynthNode,
-} from "./node-types"
+import { createFxNode, createInputNode, createOutputNode, createSignalNode, createSynthNode } from "./node-types"
 
 export const INITIAL_NODES = [
   createInputNode(),

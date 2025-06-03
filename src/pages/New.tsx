@@ -100,17 +100,9 @@ export function New() {
   const [nodes, setNodes] = useState<Node[]>(INITIAL_NODES)
   const [edges, setEdges] = useState(INITIAL_EDGES)
 
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) =>
-      setNodes((nds) => applyNodeChanges(changes, nds)),
-    [],
-  )
+  const onNodesChange = useCallback((changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)), [])
 
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange[]) =>
-      setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [],
-  )
+  const onEdgesChange = useCallback((changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)), [])
 
   const onConnect = useCallback(
     (params: Connection) => {
